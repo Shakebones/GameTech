@@ -30,7 +30,7 @@ typedef struct _missile
 static Mouse g_mousePos;
 static Mouse g_mousePosChange;
 Missile g_missile;
-VFXEpoch::Vector2Df target(920, 360);
+VFXEpoch::Vector2Df target(220, 360);
 
 CANICurveTracking* g_pAnimation;
 float timeElapsed;
@@ -68,6 +68,9 @@ void Draw()
 	if (g_pAnimation->_isHit(g_missile.pos, tarVec, 1.0f))
 	{
 		cout << "Destroyed" << endl;
+		g_missile.pos = VFXEpoch::Vector2Df(640, 360);
+		g_missile.vel = VFXEpoch::Vector2Df(1.0, 1.0f);
+		g_missile.fuel = 100.0f;
 	}
 
 	else
@@ -76,20 +79,20 @@ void Draw()
 		result = g_pAnimation->_isCollinear_same_direction(g_missile.vel, g_missile.pos, tarVec);
 		if (result)
 		{
-			g_pAnimation->_move(g_missile.pos, g_missile.vel, 1);
-			glVertex3f(g_missile.pos.m_x, g_missile.pos.m_y, 0);
+			g_pAnimation->_move(g_missile.pos, g_missile.vel, 2);
 		}
 
 		else
 		{
-			g_pAnimation->_tracking(tarVec - g_missile.pos, g_missile.vel, 0.5f);
-			g_pAnimation->_move(g_missile.pos, g_missile.vel, 1);
-			glVertex3f(g_missile.pos.m_x, g_missile.pos.m_y, 0);
+			g_pAnimation->_tracking(tarVec - g_missile.pos, g_missile.vel, 1.0f);
+			g_pAnimation->_move(g_missile.pos, g_missile.vel, 2);
 		}
 	}
+	glVertex3f(g_missile.pos.m_x, g_missile.pos.m_y, 0);
 
 	glColor3f(1.0f, 0.0f, 0.0f);
-	glVertex3f(920, 360, 0);
+	target = VFXEpoch::Vector2Df(g_mousePos.x, 720 - g_mousePos.y);
+	glVertex3f(target.m_x, target.m_y, 0);
 
 	glEnd();
 	glFlush();
@@ -98,6 +101,9 @@ void Draw()
 	glutSwapBuffers();
 	clock_t end = GetTickCount();
 	timeElapsed = (end - begin) / 1000.0f;
+
+	float fpsControl = 1000 / 60 - timeElapsed;
+	Sleep(fpsControl);
 }
 
 void KeyboardEvent(int key, int x, int y)
