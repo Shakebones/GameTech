@@ -1,8 +1,9 @@
-﻿Build started 10/29/2015 2:52:55 AM.
+﻿Build started 10/29/2015 3:37:45 AM.
      1>Project "C:\Development\Project\GameTech\CurveTracking\CurveTracking\CurveTracking.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Development\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
-         main.cpp
+         C:\Development\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ANI_CurveTracking.cpp
+         ANI_CurveTracking.cpp
+     1>c:\development\project\gametech\curvetracking\curvetracking\ani_curvetracking.cpp(159): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
        Link:
          C:\Development\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Development\Project\GameTech\CurveTracking\Debug\CurveTracking.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Development\Project\GameTech\CurveTracking\Debug\CurveTracking.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Development\Project\GameTech\CurveTracking\Debug\CurveTracking.lib" /MACHINE:X86 Debug\ANI_CurveTracking.obj
          Debug\main.obj
@@ -11,4 +12,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.30
+Time Elapsed 00:00:00.84

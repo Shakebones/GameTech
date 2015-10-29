@@ -134,9 +134,9 @@ CANICurveTracking::_tracking(VFXEpoch::Vector2Df targetVec, VFXEpoch::Vector2Df&
 	std::cout << "Degree difference between missile direction and the vector of missile position to target" << std::endl;
 	std::cout << "Degree:" << degreeDiff << std::endl;
 
-	if (degreeDiff <= 5.0)
+	if (degreeDiff <= 0.5)
 	{
-		std::cout << "Bias less than 5.0 degree, now correct to the exact direction" << std::endl;
+		std::cout << "Bias less than 0.5 degree, now correct to the exact direction" << std::endl;
 		targetVec.normalize();
 		missileVel = targetVec;
 		return;
