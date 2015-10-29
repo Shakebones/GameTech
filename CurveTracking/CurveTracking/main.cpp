@@ -35,6 +35,12 @@ VFXEpoch::Vector2Df target(220, 360);
 CANICurveTracking* g_pAnimation;
 float timeElapsed;
 
+void Timer(int p)
+{
+	glutPostRedisplay();
+	glutTimerFunc(20, Timer, 0);
+}
+
 static void Init()
 {
 	glClearColor(0.0, 0.0, 0.0, 0.0);
@@ -65,7 +71,7 @@ void Draw()
 
 	// TODO: Animate the points
 	VFXEpoch::Vector2Df tarVec = target;
-	if (g_pAnimation->_isHit(g_missile.pos, tarVec, 1.0f))
+	if (g_pAnimation->_isHit(g_missile.pos, tarVec, 5.0f))
 	{
 		cout << "Destroyed" << endl;
 		g_missile.pos = VFXEpoch::Vector2Df(640, 360);
@@ -77,16 +83,11 @@ void Draw()
 	{
 		bool result;
 		result = g_pAnimation->_isCollinear_same_direction(g_missile.vel, g_missile.pos, tarVec);
-		if (result)
-		{
-			g_pAnimation->_move(g_missile.pos, g_missile.vel, 2);
-		}
-
-		else
+		if (!result)
 		{
 			g_pAnimation->_tracking(tarVec - g_missile.pos, g_missile.vel, 1.0f);
-			g_pAnimation->_move(g_missile.pos, g_missile.vel, 2);
 		}
+		g_pAnimation->_move(g_missile.pos, g_missile.vel, 3.0f);
 	}
 	glVertex3f(g_missile.pos.m_x, g_missile.pos.m_y, 0);
 
@@ -164,9 +165,10 @@ int main(int argc, char** argv)
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowPosition(50, 100);
 	glutInitWindowSize(1280, 720);
-	glutCreateWindow("Test");
+	glutCreateWindow("Homing missile");
 	glutReshapeFunc(Resize);
 	Init();
+	glutTimerFunc(20, Timer, 0);
 	glutDisplayFunc(Draw);
 	glutSpecialFunc(KeyboardEvent);
 	glutMouseFunc(MouseEvent);
