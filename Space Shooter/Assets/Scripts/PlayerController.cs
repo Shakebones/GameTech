@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
     public Transform shotSpawn;
     public float fireRate;
     private float nextFire;
+    static public Vector3 pos;
 
     void Update()
     {
@@ -40,5 +41,7 @@ public class PlayerController : MonoBehaviour {
 	rb.position = new Vector3(Mathf.Clamp(rb.position.x, bndry.xMin, bndry.xMax), 0.0f, Mathf.Clamp(rb.position.z, bndry.zMin, bndry.zMax));
 
 	rb.rotation = Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * -tilt);
+
+	pos = rb.position;
     }
 }
