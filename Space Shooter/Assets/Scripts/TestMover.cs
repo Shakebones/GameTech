@@ -27,11 +27,19 @@ public class TestMover : MonoBehaviour
    
     void Update()
     {
-	Vector3 move;
-	dir = target.transform.position - transform.position;
-	rot = Quaternion.LookRotation(dir);
-	transform.rotation = Quaternion.Slerp(transform.rotation, rot, turnSpeed * Time.deltaTime);
-	move = new Vector3(0, 0, speed * Time.deltaTime);
-	transform.Translate(move);
+	if (target != null)
+	{
+	    Vector3 move;
+	    dir = target.transform.position - transform.position;
+	    rot = Quaternion.LookRotation(dir);
+	    transform.rotation = Quaternion.Slerp(transform.rotation, rot, turnSpeed * Time.deltaTime);
+	    move = new Vector3(0, 0, speed * Time.deltaTime);
+	    transform.Translate(move);
+	}
+
+	else
+	{
+	    transform.Translate(new Vector3(0, 0, speed * Time.deltaTime));
+	}
     }
 }
